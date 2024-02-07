@@ -1,7 +1,4 @@
-import Login from '../components/login';
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import Login from './components/login';
 
 export default function Home() {
   return <Login />

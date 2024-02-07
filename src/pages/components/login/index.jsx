@@ -24,16 +24,14 @@ export default function Login(){
         }
     }
     return(
-        <div>
             <form onSubmit={handleSubmit}>
             se connecter
                 <div>
-                    <input type="text" placeholder="Enter your email adress" name="email" required/>
+                    <input type="email" placeholder="Enter your email adress" name="email" required/>
                     <input type="password" placeholder="Enter Password" name="psw" required />
                     <button type="submit">Login</button>
                     <button type="submit" onClick={()=> router.push("/components/signUp")} >Sign Up</button>
                 </div>
             </form> 
-        </div>
     )
 }

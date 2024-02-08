@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 export default function SignUp(){
     const router = useRouter
-    const [error, setError] = userState(null)
+    const [error, setError] = useState(null)
 
     async function handleSubmit(event){
         event.preventDefault()
@@ -28,7 +28,7 @@ export default function SignUp(){
                 throw new Error(errorMessage)
             }
         }catch (error){
-            setError(errorMessage)
+            setError('somthing went wrong')
         }
         
     }

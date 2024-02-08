@@ -28,7 +28,7 @@ export default function SignUp(){
                 throw new Error(errorMessage)
             }
         }catch (error){
-            setError('somthing went wrong')
+            setError('something went wrong')
         }
         
     }

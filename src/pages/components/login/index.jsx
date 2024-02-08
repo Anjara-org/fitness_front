@@ -18,7 +18,7 @@ export default function Login(){
         })
 
         if(response.ok){
-            router.push('/component/profile')
+            router.push('/components/profile')
         }else{
 
         }

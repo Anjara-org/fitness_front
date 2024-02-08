@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         const cookie = serialize('session', encryptedSessionData, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 60 * 60 * 24 * 7, // One week
+            maxAge: 60 * 60 * 24 * 7, // valide une semaine
             path: '/',
         });
 

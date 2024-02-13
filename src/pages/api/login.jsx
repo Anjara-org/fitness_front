@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         res.setHeader('Set-Cookie', cookie);
         res.status(200).json({success:true})
     }catch (error) {
-        if (errror.type === 'CredentalsSignIn'){
+        if (errror.type === 'CredentialsSignIn'){
             res.status(401).json({ error: 'Invalid credentials.'})
         }else{
             res.status(500).json({ error: 'Something went wrong.'})

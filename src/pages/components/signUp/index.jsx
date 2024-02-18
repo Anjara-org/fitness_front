@@ -36,7 +36,7 @@ export default function SignUp(){
 
     return(
         <form onSubmit={handleSubmit}>
-           s'inscrire
+           s inscrire
             <div>
                 <input type="text" placeholder="Enter your first name" name="First name" required/>
                 <input type="text" placeholder="Enter your last name" name="Last name" required/>

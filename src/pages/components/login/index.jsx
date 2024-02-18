@@ -1,4 +1,3 @@
-import { FormEvent } from "react"
 import { useRouter } from "next/router"
 
 export default function Login(){
@@ -11,21 +10,24 @@ export default function Login(){
         const email = formData.get('email')
         const password = formData.get('password')
 
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {'content type' : 'application/json'},
-            body: JSON.stringify({email, password}),
-        })
-
-        if(response.ok){
-            router.push('/components/profile')
-        }else{
-
-        }
-    }
+        try {
+            const response = await axios.post('http://localhost8080/login', {
+              email: email,
+              password: password
+            });
+      
+            const { token } = response.data;
+            document.cookie = `token=${token}; path=/`;
+            router.push("/components/profile");
+          } catch (error) {
+            console.error(error);
+            setError("Login failed");
+          }
+        };
+      
     return(
-            <form onSubmit={handleSubmit}>
-            se connecter
+            <form className="form-container" onSubmit={handleSubmit}>
+            Welcome to Fitness
                 <div>
                     <input type="email" placeholder="Enter your email adress" name="email" required/>
                     <input type="password" placeholder="Enter Password" name="psw" required />

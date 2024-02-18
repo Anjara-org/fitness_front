@@ -12,22 +12,21 @@ export default function Login(){
         const email = formData.get('email')
         const password = formData.get('password')
 
-    try{
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {'content type' : 'application/json'},
-            body: JSON.stringify({email, password}),
-        })
-
-        if (!response.ok) throw new Error("Login failed");
-
-      const { token } = await response.json();
-      document.cookie = `token=${token}; path=/`;
-      router.push("/components/profile");
-    } catch (error) {
-      console.error(error);
-    }
-    }
+        try {
+            const response = await axios.post('http://localhost8080/login', {
+              email: email,
+              password: password
+            });
+      
+            const { token } = response.data;
+            document.cookie = `token=${token}; path=/`;
+            router.push("/components/profile");
+          } catch (error) {
+            console.error(error);
+            setError("Login failed");
+          }
+        };
+      
     return(
             <form className="form-container" onSubmit={handleSubmit}>
             Welcome to Fitness

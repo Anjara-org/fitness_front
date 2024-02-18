@@ -3,6 +3,58 @@ import $ from "jquery";
 import { useEffect } from "react";
 
 export default function SignUpLogIn() {
+
+  async function handleSignin(event){
+      event.preventDefault()
+
+      const formData = new FormData(event.currentTarget)
+      const email = formData.get('email')
+      const password = formData.get('password')
+
+      try {
+          const response = await axios.post('http://localhost8080/login', {
+            email: email,
+            password: password
+          });
+    
+          const { token } = response.data;
+          document.cookie = `token=${token}; path=/`;
+          router.push("/components/profile");
+        } catch (error) {
+          console.error(error);
+          setError("Login failed");
+        }
+      };
+
+  // ----------------signup-------------------------------
+  async function handleSignup(event){
+    event.preventDefault()
+    
+    const formData = new FormData(event.currentTarget)
+    const firstName = formData.get('firstName')
+    const lastName = formData.get('lastName')
+    const email = formData.get('email')
+    const password = formData.get('password')
+
+
+    try {
+        const response = await axios.post("http://localhost:8080/signup", {
+            firstname: firstName,
+            lastname: lastName,
+            email: email,
+            password: password
+        }, { withCredentials: true });
+
+        console.log(response);
+        // Rediriger l'utilisateur vers une autre page après l'inscription réussie
+        router.push('/profile');
+    } catch (error) {
+        console.error('Une erreur s\'est produite lors de l\'inscription :', error);
+        setError(error.message);
+    }
+    
+}
+  // -----------------------------------------------
   useEffect(() => {
     const sign_in = $("#sign_in");
     const sign_up = $("#sign_up");
@@ -26,12 +78,13 @@ export default function SignUpLogIn() {
                     ${styles.sign_up_container}
                 `}
         >
-          <form>
-            <h1 className={styles.h1}>Créer un compte</h1>
-            <input type={"text"} placeholder={"Nom"} />
+          <form onSubmit={handleSignup}>
+            <h1 className={styles.h1}>Create account</h1>
+            <input type={"text"} placeholder={"firstname"} />
+            <input type={"text"} placeholder={"lastname"} />
             <input type={"email"} placeholder={"E-mail"} />
-            <input type={"password"} placeholder={"Mot de passe"} />
-            <button className={styles.button}>{"S'inscrire"}</button>
+            <input type={"password"} placeholder={"password"} />
+            <button className={styles.button}>{"Sign up"}</button>
           </form>
         </div>
         <div
@@ -40,11 +93,11 @@ export default function SignUpLogIn() {
                     ${styles.sign_in_container}
                 `}
         >
-          <form>
+          <form onSubmit={handleSignin}>
             <h1>Se connecter</h1>
             <input type={"email"} placeholder={"E-mail"} />
             <input type={"password"} placeholder={"Mot de passe"} />
-            <button className={styles.button}>{"Se connecter"}</button>
+            <button className={styles.button}>{"Login"}</button>
           </form>
         </div>
         <div className={styles.overlay_container}>
@@ -55,18 +108,19 @@ export default function SignUpLogIn() {
                             ${styles.overlay_left}
                         `}
             >
-              <h1 className={styles.h1}>Bon retour !</h1>
+              <h1 className={styles.h1}>Good return !</h1>
               <p className={styles.p}>
-                Pour continuer votre entrainement veuillez vous connecter.
+                Please log in.
               </p>
               <button
+                type="submit"
                 className={`
                                     ${styles.ghost}
                                     ${styles.button}
                                 `}
                 id={"sign_in"}
               >
-                {"Se connecter"}
+                {"Login"}
               </button>
             </div>
             <div
@@ -77,7 +131,7 @@ export default function SignUpLogIn() {
             >
               <h1 className={styles.h1}>Bienvenue !</h1>
               <p className={styles.p}>
-                Pour commencer votre entrainement veuillez vous inscrire.
+                Please sign up to begin.
               </p>
               <button
                 className={`
@@ -86,7 +140,7 @@ export default function SignUpLogIn() {
                                 `}
                 id={"sign_up"}
               >
-                {"S'inscrire"}
+                {"Sign up"}
               </button>
             </div>
           </div>

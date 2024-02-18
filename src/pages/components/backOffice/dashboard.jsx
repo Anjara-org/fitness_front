@@ -1,7 +1,11 @@
 import Navbar from './navbar'
+import AllUsers from './user/User'
 
 export default function Dashboard(){
     return(
-        <Navbar />
+        <div>
+            <Navbar />
+            <AllUsers />
+        </div>
     )
 }

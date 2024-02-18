@@ -3,30 +3,28 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import Axios from "axios"; // Importer Axios
 import { useEffect, useState } from "react";
-import Navbar from "../navbar";
 
 export default function CoachList() {
-  const [coachData, setCoachData] = useState([]);
+  const [roomData, setRoomData] = useState([]);
 
   useEffect(() => {
-    Axios.get("URL_DE_VOTRE_API_BACKEND/users")
+    Axios.get("URL_DE_VOTRE_API_BACKEND/rooms")
       .then(response => {
         setCoachData(response.data);
       })
       .catch(error => {
-        console.error("Erreur lors de la récupération des données des coachs :", error);
+        console.error("Erreur lors de la récupération des données des salles :", error);
       });
   }, []);
 
   return (
     <div>
-      {coachData.map(coach => (
-        <Card key={coach.id}>
-          <Image alt="Card image cap" src={coach.image} className="w-100 h-100"/>
+      {roomData.map(coach => (
+        <Card key={room.id}>
+          <Image alt="Card image cap" src={room.image} className="w-100 h-100"/>
           <CardBody className="p-4">
-            <CardTitle tag="h5">{coach.name}</CardTitle>
-            <CardSubtitle>{coach.age}</CardSubtitle>
-            <CardText className="mt-3">{coach.adress}</CardText>
+            <CardTitle tag="h5">{room.location}</CardTitle>
+            <CardSubtitle>{room.adress}</CardSubtitle>
           </CardBody>
         </Card>
       ))}

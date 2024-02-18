@@ -1,5 +1,10 @@
+import Navbar from "../navbar";
+
 export default function TrainingProgram(){
     return(
-        <p>Training program</p>
+        <div>
+            <p>Training program</p>
+        </div>
+        
     )
 }

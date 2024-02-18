@@ -24,7 +24,7 @@ export default function Navbar(){
                         <button onClick={()=> router.push("./trainingRoom/TrainingRoom")}>Training room</button>
                     </li>
                     <li className="nav-item">
-                        <button onClick={()=> router.push("./traingingProgram/TrainingProgram")}>Traingin program</button>
+                        <button onClick={()=> router.push("./trainingProgram/TrainingProgram")}>Traingin program</button>
                     </li>
                 </ul>
             </div>

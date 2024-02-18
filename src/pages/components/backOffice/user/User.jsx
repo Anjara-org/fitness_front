@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardBody, CardTitle, CardSubtitle, Table } from "reactstrap";
 import Axios from "axios";
-import Navbar from "../navbar";
+import Image from "next/image";
 
 export default function AllUsers(){
 
@@ -62,7 +62,7 @@ export default function AllUsers(){
                 <tr key={index} className="border-top">
                   <td>
                     <div className="d-flex align-items-center p-2">
-                      <img
+                      <Image
                         src={user.avatar}
                         className="rounded-circle"
                         alt="avatar"

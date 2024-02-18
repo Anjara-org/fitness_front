@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 export default function SignUp(){
     const router = useRouter
@@ -14,21 +15,21 @@ export default function SignUp(){
         const email = formData.get('email')
         const password = formData.get('password')
 
-        try{
-            const response = await fetch('/api/signup', {
-                method: 'POST',
-                headers: {'content type' : 'application/json'},
-                body: JSON.stringify({firstName, lastName, email, password}),
-            })
-    
-            if(response.ok){
-                router.push('/profile')
-            }else{
-                const errorMessage = await response.text()
-                throw new Error(errorMessage)
-            }
-        }catch (error){
-            setError('something went wrong')
+   
+        try {
+            const response = await axios.post("http://localhost:8080/signup", {
+                firstname: firstName,
+                lastname: lastName,
+                email: email,
+                password: password
+            }, { withCredentials: true });
+
+            console.log(response);
+            // Rediriger l'utilisateur vers une autre page après l'inscription réussie
+            router.push('/profile');
+        } catch (error) {
+            console.error('Une erreur s\'est produite lors de l\'inscription :', error);
+            setError(error.message);
         }
         
     }

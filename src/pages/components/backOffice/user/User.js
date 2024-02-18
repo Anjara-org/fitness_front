@@ -16,9 +16,9 @@ const AllUsers = ({ tableData}) => {
               <tr>
                 <th>User</th>
                 <th>Gender</th>
-                <th>Weight</th>
+                <th>status</th>
                 <th>Length</th>
-                <th>Budget</th>
+                <th>weight</th>
               </tr>
             </thead>
             <tbody>
@@ -39,7 +39,7 @@ const AllUsers = ({ tableData}) => {
                       </div>
                     </div>
                   </td>
-                  <td>{tdata.project}</td>
+                  <td>{tdata.gender}</td>
                   <td>
                     {tdata.status === "pending" ? (
                       <span className="p-2 bg-danger rounded-circle d-inline-block ms-3" />
@@ -49,8 +49,8 @@ const AllUsers = ({ tableData}) => {
                       <span className="p-2 bg-success rounded-circle d-inline-block ms-3" />
                     )}
                   </td>
-                  <td>{tdata.weeks}</td>
-                  <td>{tdata.budget}</td>
+                  <td>{tdata.lenght}</td>
+                  <td>{tdata.weight}</td>
                 </tr>
               ))}
             </tbody>

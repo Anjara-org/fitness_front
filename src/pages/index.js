@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import styles from "./index.module.css";
 import $ from "jquery";
 import { useEffect } from "react";

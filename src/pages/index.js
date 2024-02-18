@@ -14,7 +14,7 @@ export default function SignUpLogIn() {
       const password = formData.get('password')
 
       try {
-          const response = await axios.post('http://localhost:8080/login', {
+          const response = await axios.post('https://fitness-back-iku2.onrender.com/users', {
             email: email,
             password: password
           });
